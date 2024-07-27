@@ -13,6 +13,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final todoList = ToDo.todoList();
+  final _todoController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +69,7 @@ class _HomeState extends State<Home> {
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: TextField(
+                                  controller: _todoController,
                                   decoration: InputDecoration(
                                     hintText: "Add a new Item",
                                     border: InputBorder.none,
@@ -87,12 +89,11 @@ class _HomeState extends State<Home> {
                                     fontSize: 40,
                                   ),
                                 ),
-                                  onPressed: (){},
-                                  style: ElevatedButton.styleFrom(
-                                    foregroundColor: color2,
-                                    minimumSize: Size(60, 60),
-                                    elevation: 10,
-                                  ),
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                  foregroundColor: color2,
+                                  elevation: 10,
+                                ),
                               ),
                             ),
                           ],
@@ -101,6 +102,8 @@ class _HomeState extends State<Home> {
                       for (ToDo todoo in todoList)
                         ToDoItem(
                           todo: todoo,
+                          onToDoChanged: _handleToDoChange,
+                          onDeleteItem: _deleteToDoItem,
                         ),
                     ],
                   ),
@@ -113,6 +116,26 @@ class _HomeState extends State<Home> {
     );
   }
 
+  void _handleToDoChange(ToDo todo) {
+    setState(() {
+      todo.isDone = !todo.isDone;
+    });
+  }
+
+  void _deleteToDoItem(String id) {
+    setState(() {
+      todoList.removeWhere((item) => item.id == id);
+    });
+  }
+
+  void _addToDoItem(String todo) {
+    setState(() {
+      todoList.add(ToDo(
+          id: DateTime.now().millisecondsSinceEpoch.toString(),
+          todoText: todo));
+    });
+    _todoController.clear();
+  }
 
   AppBar _buildAppBar() {
     return AppBar(
