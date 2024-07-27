@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:todo_list_app/screens/home.dart';
 
+// FINAL APP 
 void main() {
   runApp(const MyApp());
 }
