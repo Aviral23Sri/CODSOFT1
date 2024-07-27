@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:todo_list_app/color/colors.dart';
-import 'package:todo_list_app/widgets/search_box.dart';
 import 'package:todo_list_app/widgets/todo_item.dart';
 import 'package:todo_list_app/models/todo.dart';
 
 class Home extends StatefulWidget {
-  Home({super.key});
+  const Home({super.key});
 
   @override
   State<Home> createState() => _HomeState();
@@ -100,18 +98,18 @@ class _HomeState extends State<Home> {
                           right: 20,
                         ),
                         child: ElevatedButton(
-                          child: const Text(
-                            '+',
-                            style: TextStyle(
-                              fontSize: 40,
-                            ),
-                          ),
                           onPressed: () {
                             _addToDoItem(_todoController.text);
                           },
                           style: ElevatedButton.styleFrom(
                             foregroundColor: color2,
                             elevation: 10,
+                          ),
+                          child: const Text(
+                            '+',
+                            style: TextStyle(
+                              fontSize: 40,
+                            ),
                           ),
                         ),
                       ),
@@ -201,12 +199,12 @@ class _HomeState extends State<Home> {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Icon(
+          const Icon(
             Icons.menu,
             color: color4,
             size: 30,
           ),
-          Container(
+          SizedBox(
             height: 55,
             width: 55,
             child: ClipRRect(
