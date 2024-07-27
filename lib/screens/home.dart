@@ -89,7 +89,9 @@ class _HomeState extends State<Home> {
                                     fontSize: 40,
                                   ),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  _addToDoItem(_todoController.text);
+                                },
                                 style: ElevatedButton.styleFrom(
                                   foregroundColor: color2,
                                   elevation: 10,
